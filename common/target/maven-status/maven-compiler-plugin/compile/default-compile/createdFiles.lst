@@ -1,0 +1,6 @@
+com\ryota\common\constant\HttpStatus.class
+com\ryota\common\common\Result.class
+com\ryota\common\common\PageFormat.class
+com\ryota\common\util\RedisUtil.class
+com\ryota\common\constant\CodeContent.class
+com\ryota\common\CommonApplication.class
