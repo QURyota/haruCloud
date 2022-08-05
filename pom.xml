@@ -11,6 +11,7 @@
         <module>cloudalibaba-provider-payment9001</module>
         <module>normal</module>
         <module>common</module>
+        <module>juc</module>
     </modules>
     <packaging>pom</packaging>
 
