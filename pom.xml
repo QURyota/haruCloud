@@ -12,6 +12,7 @@
         <module>normal</module>
         <module>common</module>
         <module>juc</module>
+        <module>leetcode</module>
     </modules>
     <packaging>pom</packaging>
 
