@@ -42,12 +42,6 @@ public class PmsProductController {
     }
 
 
-    @GetMapping("addCache")
-    public Result addCache(){
-        redisUtil.set("s","s");
-        return Result.success();
-    }
-
 
 }
 

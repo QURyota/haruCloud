@@ -8,6 +8,7 @@ import com.ryota.normal.constant.Constant;
 import com.ryota.normal.entity.PmsProduct;
 import com.ryota.normal.mapper.PmsProductMapper;
 import com.ryota.normal.service.PmsProductService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,11 +33,14 @@ public class PmsProductServiceImpl extends ServiceImpl<PmsProductMapper, PmsProd
     @Override
     public Result get(Long id) {
         String s = redisUtil.get(Constant.PRODUCT_PREFIX + id);
-        if(StringUtils.isNotEmpty(s)){
+        if (StringUtils.isNotEmpty(s)) {
             PmsProduct cacheProduct = JSONObject.parseObject(s, PmsProduct.class);
             return Result.success(cacheProduct);
         }
         PmsProduct pmsProduct = pmsProductMapper.get(id);
+        if (ObjectUtils.isEmpty(pmsProduct)) {
+            return Result.success("没有该条数据,id为:" + id);
+        }
         return Result.success(pmsProduct);
     }
 
