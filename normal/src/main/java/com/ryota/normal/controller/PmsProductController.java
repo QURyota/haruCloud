@@ -42,6 +42,13 @@ public class PmsProductController {
     }
 
 
+    @ApiOperation("删除缓存")
+    @GetMapping("deleteCache")
+    public Result deleteCache(@RequestParam("id") Long id){
+        return pmsProductService.deleteCache(id);
+    }
+
+
 
 }
 

@@ -11,6 +11,7 @@ import com.ryota.normal.service.PmsProductService;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.cache.RedisCache;
 import org.springframework.stereotype.Service;
 
 /**
@@ -29,6 +30,7 @@ public class PmsProductServiceImpl extends ServiceImpl<PmsProductMapper, PmsProd
 
     @Autowired
     private RedisUtil redisUtil;
+
 
     @Override
     public Result get(Long id) {
@@ -52,5 +54,11 @@ public class PmsProductServiceImpl extends ServiceImpl<PmsProductMapper, PmsProd
         } else {
             return Result.error();
         }
+    }
+
+    @Override
+    public Result deleteCache(Long id) {
+        redisUtil.del(Constant.PRODUCT_PREFIX+id);
+        return Result.success();
     }
 }

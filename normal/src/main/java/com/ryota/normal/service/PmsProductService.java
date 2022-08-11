@@ -27,4 +27,11 @@ public interface PmsProductService extends IService<PmsProduct> {
      * @return
      */
     Result add(PmsProduct pmsProduct);
+
+    /**
+     * 根据id删除缓存
+     * @param id
+     * @return
+     */
+    Result deleteCache(Long id);
 }
