@@ -13,6 +13,7 @@
         <module>common</module>
         <module>juc</module>
         <module>leetcode</module>
+        <module>design-mode</module>
     </modules>
     <packaging>pom</packaging>
 
