@@ -5,14 +5,17 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ryota.common.common.Result;
 import com.ryota.common.util.RedisUtil;
 import com.ryota.normal.constant.Constant;
+import com.ryota.normal.entity.JsonParam;
 import com.ryota.normal.entity.PmsProduct;
 import com.ryota.normal.mapper.PmsProductMapper;
 import com.ryota.normal.service.PmsProductService;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.cache.RedisCache;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -48,6 +51,15 @@ public class PmsProductServiceImpl extends ServiceImpl<PmsProductMapper, PmsProd
 
     @Override
     public Result add(PmsProduct pmsProduct) {
+
+        List<JsonParam> list = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            JsonParam jsonParam = new JsonParam();
+            jsonParam.setContent("content"+i);
+            list.add(jsonParam);
+        }
+        
+        pmsProduct.setDescription(JSONObject.toJSONString(list));
         if (this.save(pmsProduct)) {
             redisUtil.set(Constant.PRODUCT_PREFIX + pmsProduct.getId(), JSONObject.toJSONString(pmsProduct));
             return Result.success();
