@@ -15,6 +15,7 @@
         <module>leetcode</module>
         <module>design-mode</module>
         <module>rabbitmq</module>
+        <module>cof-user</module>
     </modules>
     <packaging>pom</packaging>
 

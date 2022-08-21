@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ryota.cofuser.mapper.CofUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ryota.cofuser.entity.CofUser">
+        <id column="ID" property="id" />
+        <result column="EMP_ID" property="empId" />
+        <result column="NAME" property="name" />
+        <result column="DESCRIPTION" property="description" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="EMAIL" property="email" />
+        <result column="TENANT_ID" property="tenantId" />
+        <result column="PASSWORD" property="password" />
+        <result column="SALT" property="salt" />
+        <result column="STATUS" property="status" />
+        <result column="AUTH_MODE" property="authMode" />
+        <result column="UNLOCK_TIME" property="unlockTime" />
+        <result column="LAST_LOGIN" property="lastLogin" />
+        <result column="START_DATE" property="startDate" />
+        <result column="END_DATE" property="endDate" />
+        <result column="IS_FIXED" property="isFixed" />
+        <result column="IS_ADUSER" property="isAduser" />
+        <result column="PHONE" property="phone" />
+        <result column="DATA_SOURCE" property="dataSource" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, EMP_ID, NAME, DESCRIPTION, CREATE_TIME, UPDATE_TIME, EMAIL, TENANT_ID, PASSWORD, SALT, STATUS, AUTH_MODE, UNLOCK_TIME, LAST_LOGIN, START_DATE, END_DATE, IS_FIXED, IS_ADUSER, PHONE, DATA_SOURCE
+    </sql>
+    <select id="get" resultType="com.ryota.cofuser.vo.UserPO">
+        SELECT
+            a2.id,
+            a1.`NAME`,
+            a1.DESCRIPTION,
+            a3.`name` AS `position_name`
+        FROM
+            cof_user a1,
+            cof_position_emp_mapping a2,
+            cof_position a3
+        WHERE
+            a1.`NAME` in 
+            <foreach collection="accounts" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+          AND a1.TENANT_ID = "Cnooc-hf"
+          AND a1.EMP_ID = a2.EMP_ID
+          AND a2.POSITION_ID = a3.ID
+    </select>
+
+</mapper>
