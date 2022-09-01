@@ -16,6 +16,7 @@
         <module>design-mode</module>
         <module>rabbitmq</module>
         <module>cof-user</module>
+        <module>sa-user</module>
     </modules>
     <packaging>pom</packaging>
 

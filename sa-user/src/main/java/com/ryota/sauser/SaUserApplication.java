@@ -1,4 +1,4 @@
-package com.ryota.cofuser;
+package com.ryota.sauser;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,14 +9,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * @author Ryota
  * @description
- * @date 2022/8/21 20:41
+ * @date 2022/9/1 20:38
  */
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableSwagger2
 @ComponentScan("com.ryota.*")
-public class CofUserApplication {
+public class SaUserApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CofUserApplication.class,args);
+        SpringApplication.run(SaUserApplication.class,args);
     }
+
 }
