@@ -1,4 +1,4 @@
-package com.ryota.rabbitmq;
+package com.ryota.rabbitmq.one;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
